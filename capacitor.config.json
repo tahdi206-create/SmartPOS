@@ -1,8 +1,8 @@
+```json id="u6h0zj"
 {
   "appId": "bd.smartpos.app",
   "appName": "SmartPOS BD",
   "webDir": "out",
-  "bundledWebRuntime": false,
   "server": {
     "androidScheme": "https",
     "cleartext": true
@@ -14,3 +14,4 @@
     }
   }
 }
+```
