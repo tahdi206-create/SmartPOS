@@ -31,10 +31,11 @@ jobs:
           mkdir -p dist
           echo '<!DOCTYPE html><html><head><title>SmartPOS BD</title></head><body style="font-family:sans-serif;text-align:center;padding:50px;"><h1 style="color:#059669;">SmartPOS BD</h1><p>Cloud POS & Inventory SaaS for Bangladesh</p></body></html>' > dist/index.html
           
-          # Create a minimal valid package.json so Capacitor init succeeds without prompting
+          # Create a minimal valid package.json
           echo '{"name":"smartpos-bd","version":"1.0.0","private":true}' > package.json
           
-          npm install @capacitor/cli @capacitor/core
+          # Install CLI, core, AND the android native platform package
+          npm install @capacitor/cli @capacitor/core @capacitor/android
 
       - name: Initialize Capacitor & Build APK
         run: |
