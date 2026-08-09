@@ -34,7 +34,7 @@ jobs:
           # Create a minimal valid package.json
           echo '{"name":"smartpos-bd","version":"1.0.0","private":true}' > package.json
           
-          # Install CLI, core, AND the android native platform package
+          # Install CLI, core, and android native platform
           npm install @capacitor/cli @capacitor/core @capacitor/android
 
       - name: Initialize Capacitor & Build APK
@@ -44,7 +44,8 @@ jobs:
           npx cap copy android
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew clean
+          ./gradlew assembleDebug --no-daemon --refresh-dependencies
 
       - name: Upload Downloadable APK
         uses: actions/upload-artifact@v4
