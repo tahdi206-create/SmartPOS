@@ -29,24 +29,16 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build Web Assets
-        run: |
-          npm run build
-
-      - name: Verify Capacitor Configuration
-        run: |
-          test -f capacitor.config.json || test -f capacitor.config.ts
-          echo "Capacitor configuration found."
+      - name: Build Web App
+        run: npm run build
 
       - name: Add Android Platform
-        run: |
-          npx cap add android
+        run: npx cap add android
 
       - name: Sync Capacitor
-        run: |
-          npx cap sync android
+        run: npx cap sync android
 
       - name: Build Debug APK
         run: |
@@ -54,7 +46,7 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleDebug
 
-      - name: Upload Downloadable APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SmartPOS-BD-Android-App
