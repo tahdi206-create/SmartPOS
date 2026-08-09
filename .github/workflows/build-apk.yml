@@ -17,11 +17,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
       - name: Install Java JDK 17
         uses: actions/setup-java@v4
         with:
@@ -31,11 +26,8 @@ jobs:
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Monorepo Dependencies
-        run: pnpm install
-
-      - name: Build Web Export
-        run: pnpm run build --if-present
+      - name: Install Dependencies
+        run: npm install
 
       - name: Setup Capacitor & Build Debug APK
         run: |
