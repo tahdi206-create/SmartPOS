@@ -34,7 +34,7 @@ jobs:
       - name: Create Capacitor Project & Build APK
         run: |
           npm install -g @capacitor/cli @capacitor/core
-          npx cap init "SmartPOS BD" "bd.smartpos.app" --web-dir dist --yes
+          npx cap init "SmartPOS BD" "bd.smartpos.app" --web-dir dist
           npx cap add android
           npx cap copy android
           cd android
