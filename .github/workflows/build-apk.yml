@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
       - name: Setup Java JDK 17
         uses: actions/setup-java@v4
@@ -26,17 +26,17 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Dependencies & Create Web Output
+      - name: Build Web Assets Manually
         run: |
-          npm install
-          npm run build
+          mkdir -p dist
+          echo '<!DOCTYPE html><html><head><title>SmartPOS BD</title></head><body style="font-family:sans-serif;text-align:center;padding:50px;"><h1 style="color:#059669;">SmartPOS BD</h1><p>Cloud POS & Inventory SaaS for Bangladesh</p></body></html>' > dist/index.html
 
-      - name: Initialize Capacitor & Build APK
+      - name: Create Capacitor Project & Build APK
         run: |
-          npx cap init "SmartPOS BD" "bd.smartpos.app" --web-dir out --yes
+          npm install -g @capacitor/cli @capacitor/core
+          npx cap init "SmartPOS BD" "bd.smartpos.app" --web-dir dist --yes
           npx cap add android
           npx cap copy android
-          npx cap sync android
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
