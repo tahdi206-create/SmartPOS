@@ -12,26 +12,29 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 22
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
 
-      - name: Install Java JDK 17
+      - name: Setup Java JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Setup Capacitor & Build Debug APK
+      - name: Install Dependencies & Create Web Output
         run: |
-          npx cap add android || true
+          npm install
+          npm run build
+
+      - name: Initialize Capacitor & Build APK
+        run: |
+          npx cap init "SmartPOS BD" "bd.smartpos.app" --web-dir out --yes
+          npx cap add android
           npx cap copy android
           npx cap sync android
           cd android
