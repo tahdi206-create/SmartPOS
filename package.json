@@ -1,9 +1,10 @@
+```json
 {
   "name": "smartpos-bd",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p out && echo '<html><body><h1>SmartPOS BD</h1></body></html>' > out/index.html"
+    "build": "mkdir -p out && echo '<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>SmartPOS BD</title></head><body><h1>SmartPOS BD</h1><p>Cloud POS & Inventory SaaS for Bangladesh</p></body></html>' > out/index.html"
   },
   "dependencies": {
     "@capacitor/android": "^6.0.0",
@@ -11,3 +12,4 @@
     "@capacitor/core": "^6.0.0"
   }
 }
+```
